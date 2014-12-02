@@ -1,0 +1,25 @@
+{
+  "name": "sub-cipher",
+  "version": "0.0.1",
+  "description": "simple substitution cipher encoder/decoder",
+  "main": "subcipher.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lmignot/sub-cipher.git"
+  },
+  "author": "Laurent Mignot <lmignot@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lmignot/sub-cipher/issues"
+  },
+  "homepage": "https://github.com/lmignot/sub-cipher",
+  "devDependencies": {
+    "mocha": "^2.0.1"
+  }
+}
