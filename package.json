@@ -21,5 +21,10 @@
   "homepage": "https://github.com/lmignot/sub-cipher",
   "devDependencies": {
     "mocha": "^2.0.1"
-  }
+  },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "subcipher.js"
+  ]
 }
