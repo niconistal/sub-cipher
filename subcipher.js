@@ -1,69 +1,42 @@
-"use strict"
+'use strict';
 
-var proto;
+function SubCipher(key) {
+    this.alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    this.key = key || 'Vmt6zP5QAWxI1G8fgjEJYvS2DsrqyHokCdKBe4b9p7ahXcUnMF0NuLTROZi3lw';
+}
 
-function SubCipher( key ) {
+SubCipher.prototype.encode = function(message) {
+    var encoded = [];
+    var cchar, ind;
 
-    this.alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    this.key = key || "XYZABCDEFGHIJKLMNOPQRSTUVW";
-
+    for(var i =0 ; i < message.length; i++) {
+        cchar = message.charAt(i);
+        ind = this.alphabet.indexOf(cchar);
+        if(ind === -1) {
+            encoded.push(cchar);
+        } else {
+            encoded.push(this.key.charAt(ind));
+        }
+    }
+    return encoded.join('');
 };
 
-proto = SubCipher.prototype;
-
-
-proto.encode = function( message ) {
-    var self = this;
-    var i = 0;
-    var encoded = [];
-    var cchar, ind, len, lcMessage;
-
-    if( !message ) return '';
-
-    len = message.length;
-
-    for( ; i < len; i++) {
-        cchar = message.charAt(i);
-        ind = self.alphabet.indexOf(cchar.toUpperCase());
-        if( ind === -1 ) {
-            encoded.push( cchar );
-        } else {
-            encoded.push( self.key.charAt( ind ) );
-        }
-    }
-
-    return encoded.join('');
-}
-
-proto.decode = function( message ) {
-    var self = this;
-    var i = 0;
+SubCipher.prototype.decode = function( message ) {
     var decoded = [];
-    var cchar, ind, len, lcMessage;
-
-    if( !message ) return '';
-
-    len = message.length;
-
-    for( ; i < len; i++) {
+    var cchar, ind;
+    for(var i = 0 ; i < message.length; i++) {
         cchar = message.charAt(i);
-        ind = self.key.indexOf(cchar.toUpperCase());
+        ind = this.key.indexOf(cchar);
 
-        if( ind === -1 ) {
-            decoded.push( cchar );
+        if(ind === -1) {
+            decoded.push(cchar);
         } else {
-            decoded.push( self.alphabet.charAt( ind ) );
+            decoded.push(this.alphabet.charAt(ind));
         }
     }
-
     return decoded.join('');
-}
+};
 
-
-
-module.exports = function( key ) {
-
-    return new SubCipher( key );
-
-}
+module.exports = function(key) {
+    return new SubCipher(key);
+};
